@@ -26,18 +26,18 @@ public class ImportadorTransferenciasService {
 	String valorFormatado;
 	
 	public void lerArquivoConta() {
-		try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ebabetto\\Documents\\Projetos\\BancoEquipe1\\Contas.txt"))){
+		try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\hnantes\\Documents\\BancoDigitalEquipe1\\Contas.txt"))){
 			while(reader.ready()) {
 			String line = reader.readLine();
 			Conta conta = new Conta();
-			conta.setIdConta(Long.parseLong(line.substring(0,1)));
-			conta.setIdUsuario(Long.parseLong(line.substring(2,3)));
-			conta.setNumeroConta(Integer.parseInt(line.substring(4,11)));
-			conta.setAgencia(Short.parseShort(line.substring(13,17)));
-			conta.setSaldo(new BigDecimal(line.substring(18,21)).divide(BigDecimal.valueOf(100)));
-			conta.setLimiteCredito(new BigDecimal(line.substring(23,25)));
+			conta.setIdConta(Long.parseLong(line.substring(0,5)));
+			conta.setIdUsuario(Long.parseLong(line.substring(5,10)));
+			conta.setNumeroConta(Integer.parseInt(line.substring(10,18)));
+			conta.setAgencia(Short.parseShort(line.substring(18,22)));
+			conta.setSaldo(new BigDecimal(line.substring(22,30)).divide(BigDecimal.valueOf(100)));
+		
 			listaConta.add(conta);
-			}
+					}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,17 +45,17 @@ public class ImportadorTransferenciasService {
 	}
 	
 	public void lerArquivoUsuario() {
-		try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ebabetto\\Documents\\Projetos\\BancoEquipe1\\Usuarios.txt"))) {
+		try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\hnantes\\Documents\\BancoDigitalEquipe1\\Usuarios.txt"))) {
 			while(reader.ready()) {
 				String line = reader.readLine();
-				String[] dados = line.split(",");
+				String[] dados = line.split(";");
 				Usuario usuario = new Usuario();
-				usuario.setNome(dados[0]);
-				usuario.setIdUsuario(Long.parseLong(dados[1]));
-				usuario.setCpf(dados[2]);
-				usuario.setDataNascimento(LocalDate.parse(dados[3]));
-				usuario.setEmail(dados[4]);
-				usuario.setSenha(dados[5]);
+				usuario.setNome(dados[1]);
+				usuario.setIdUsuario(Long.parseLong(dados[0]));
+				usuario.setCpf(dados[3]);
+				usuario.setDataNascimento(LocalDate.parse(dados[4]));
+//				usuario.setEmail(dados[4]);
+				usuario.setSenha(dados[2]);
 				listaUsuario.add(usuario);
 			}
 		} catch (Exception e) {
@@ -90,7 +90,7 @@ public class ImportadorTransferenciasService {
 	}
 	public void salvarTransferencias(Transferencia trans) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(
-				"C:\\Users\\ebabetto\\Documents\\Projetos\\BancoEquipe1\\TransferenciasGeradas.txt",true))) {
+				"C:\\Users\\hnantes\\Documents\\BancoDigitalEquipe1\\TransferenciasGeradas.txt",true))) {
 			writer.write(listaUsuario.get(indexOrigem).getCpf() + "" + listaConta.get(indexOrigem).getAgencia() + ""
 					+ listaConta.get(indexOrigem).getNumeroConta()+ "" + listaConta.get(indexDestino).getAgencia()
 					+ "" + listaConta.get(indexDestino).getNumeroConta() + "" +valorFormatado + ""
