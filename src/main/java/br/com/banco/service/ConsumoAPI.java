@@ -24,7 +24,7 @@ public class ConsumoAPI {
 		RestTemplate rest = new RestTemplate();
 
 		try (BufferedReader reader = new BufferedReader(
-				new FileReader("C:\\Users\\ebabetto\\Documents\\Projetos\\BancoEquipe1\\TransferenciasGeradas.txt"))) {
+				new FileReader("C:\\Users\\ypiovarczik\\Downloads\\teste\\Banco_Digital_1\\TransferenciasGeradas.txt"))) {
 			while (reader.ready()) {
 				String line = reader.readLine();
 				

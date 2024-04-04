@@ -26,7 +26,7 @@ public class ImportadorTransferenciasService {
 	String valorFormatado;
 	
 	public void lerArquivoConta() {
-		try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ebabetto\\Documents\\Projetos\\BancoEquipe1\\Contas.txt"))){
+		try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ypiovarczik\\Downloads\\teste\\Banco_Digital_1\\Contas.txt"))){
 			while(reader.ready()) {
 			String line = reader.readLine();
 			Conta conta = new Conta();
@@ -45,7 +45,7 @@ public class ImportadorTransferenciasService {
 	}
 	
 	public void lerArquivoUsuario() {
-		try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ebabetto\\Documents\\Projetos\\BancoEquipe1\\Usuarios.txt"))) {
+		try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ypiovarczik\\Downloads\\teste\\Banco_Digital_1\\Usuarios.txt"))) {
 			while(reader.ready()) {
 				String line = reader.readLine();
 				String[] dados = line.split(";");
@@ -73,7 +73,7 @@ public class ImportadorTransferenciasService {
 			while (indexDestino == indexOrigem) {
 				indexOrigem = ran.nextInt(listaConta.size());
 			}
-			trans.setValor(new BigDecimal(ran.nextDouble(10, 10000)).setScale(2, BigDecimal.ROUND_HALF_UP));
+			trans.setValor(new BigDecimal(ran.nextDouble(10, 100)).setScale(2, BigDecimal.ROUND_HALF_UP));
 			valorFormatado = String.format("%09.2f", trans.getValor()).replace(",","");
 			trans.setData(geradorData());
 			salvarTransferencias(trans);
@@ -90,7 +90,7 @@ public class ImportadorTransferenciasService {
 	}
 	public void salvarTransferencias(Transferencia trans) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(
-				"C:\\Users\\ebabetto\\Documents\\Projetos\\BancoEquipe1\\TransferenciasGeradas.txt",true))) {
+				"C:\\Users\\ypiovarczik\\Downloads\\teste\\Banco_Digital_1\\TransferenciasGeradas.txt",true))) {
 			writer.write(listaUsuario.get(indexOrigem).getCpf() + "" + listaConta.get(indexOrigem).getAgencia() + ""
 					+ listaConta.get(indexOrigem).getNumeroConta()+ "" + listaConta.get(indexDestino).getAgencia()
 					+ "" + listaConta.get(indexDestino).getNumeroConta() + "" +valorFormatado + ""
