@@ -26,7 +26,7 @@ public class ImportadorTransferenciasService {
 	String valorFormatado;
 	
 	public void lerArquivoConta() {
-		try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ypiovarczik\\Downloads\\teste\\Banco_Digital_1\\Contas.txt"))){
+		try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\gparreiras\\Downloads\\Apagar\\Contas.txt"))){
 			while(reader.ready()) {
 			String line = reader.readLine();
 			Conta conta = new Conta();
@@ -45,7 +45,7 @@ public class ImportadorTransferenciasService {
 	}
 	
 	public void lerArquivoUsuario() {
-		try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ypiovarczik\\Downloads\\teste\\Banco_Digital_1\\Usuarios.txt"))) {
+		try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\gparreiras\\Downloads\\Apagar\\Usuarios.txt"))) {
 			while(reader.ready()) {
 				String line = reader.readLine();
 				String[] dados = line.split(";");
@@ -90,7 +90,7 @@ public class ImportadorTransferenciasService {
 	}
 	public void salvarTransferencias(Transferencia trans) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(
-				"C:\\Users\\ypiovarczik\\Downloads\\teste\\Banco_Digital_1\\TransferenciasGeradas.txt",true))) {
+				"C:\\Users\\gparreiras\\Downloads\\Apagar\\TransferenciasGeradas.txt",true))) {
 			writer.write(listaUsuario.get(indexOrigem).getCpf() + "" + listaConta.get(indexOrigem).getAgencia() + ""
 					+ listaConta.get(indexOrigem).getNumeroConta()+ "" + listaConta.get(indexDestino).getAgencia()
 					+ "" + listaConta.get(indexDestino).getNumeroConta() + "" +valorFormatado + ""
